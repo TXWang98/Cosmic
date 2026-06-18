@@ -81,8 +81,9 @@ HUGGINGFACE_HUB_TOKEN=your_token_here
 # API keys for proprietary models
 OPENAI_API_KEY=your_openai_api_key
 GEMINI_API_KEY=your_gemini_api_key
+ALI_API_KEY=your_ali_bailian_api_key
 
-# vLLM server endpoints (used by eval scripts for open-source models)
+# vLLM/OpenAI-compatible server endpoints
 ANSWERER_API_BASE=http://localhost:4877/v1
 HELPER_API_BASE=http://localhost:4877/v1
 
@@ -247,8 +248,8 @@ python main.py \
 | `--terminate` | `False` | Allow early termination once an answer is given |
 | `--answerer_model_name` | `Qwen/Qwen3-VL-32B-Instruct` | Model for the answering agent |
 | `--helper_model_name` | `Qwen/Qwen3-VL-32B-Instruct` | Model for the helper agent |
-| `--answerer_client_name` | `vllm` | Client type: `vllm`, `openai`, or `gemini` |
-| `--helper_client_name` | `vllm` | Client type: `vllm`, `openai`, or `gemini` |
+| `--answerer_client_name` | `vllm` | Client type: `vllm`, `openai`, `gemini`, `claude`, or `ali` |
+| `--helper_client_name` | `vllm` | Client type: `vllm`, `openai`, `gemini`, `claude`, or `ali` |
 | `--answerer_api_base` | `http://localhost:4877/v1` | API base URL for the answering agent |
 | `--helper_api_base` | `http://localhost:4877/v1` | API base URL for the helper agent |
 | `--temperature` | `1.0` | Sampling temperature |

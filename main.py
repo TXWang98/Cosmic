@@ -76,13 +76,13 @@ def parse_arguments():
         "--answerer_client_name",
         type=str,
         default="vllm",
-        help="Answerer client name"
+        help="Answerer client name: vllm, openai, gemini, claude, or ali"
     )
     parser.add_argument(
         "--helper_client_name",
         type=str,
         default="vllm",
-        help="Helper client name"
+        help="Helper client name: vllm, openai, gemini, claude, or ali"
     )
     parser.add_argument(
         "--answerer_api_base",
@@ -106,7 +106,7 @@ def parse_arguments():
         "--single_agent_client_name",
         type=str,
         default="vllm",
-        help="Single agent client name"
+        help="Single agent client name: vllm, openai, gemini, claude, or ali"
     )
     parser.add_argument(
         "--single_agent_api_base",
@@ -367,8 +367,8 @@ def run_two_agent_parallel(args, tasks_qa, task, use_map, sg_comm):
 
     if args.max_questions is not None:
         tasks_qa = tasks_qa[:args.max_questions]
-        random.seed(args.seed)
-        random.shuffle(tasks_qa)
+        # random.seed(args.seed)
+        # random.shuffle(tasks_qa)
         print(f"Processing {len(tasks_qa)} questions (randomly sampled)")
     else:
         print(f"Processing {len(tasks_qa)} questions (all)")

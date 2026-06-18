@@ -9,6 +9,8 @@ from typing import List, Dict, Any
 import logging
 logger = logging.getLogger(__name__)
 
+OPENAI_COMPATIBLE_CLIENTS = {"openai", "gemini", "claude", "ali"}
+
 
 class ConvAgent:
     def __init__(
@@ -50,10 +52,10 @@ class ConvAgent:
         if client_name == "vllm":
             self.client = create_vllm_client(
                 api_base=api_base, model_name=model_name)
-        elif client_name in ["openai", "gemini", "claude"]:
+        elif client_name in OPENAI_COMPATIBLE_CLIENTS:
             print(f"Client name: {client_name}")
             api_key = os.environ.get(client_name.upper() + "_API_KEY", "")
-            print(f"API key: {api_key}")
+            print(f"API key loaded: {bool(api_key)}")
             self.client = create_openai_client(
                 api_base=api_base, api_key=api_key, model_name=model_name)
         else:
@@ -585,7 +587,7 @@ class BothViewsAgent:
         if client_name == "vllm":
             self.client = create_vllm_client(
                 api_base=api_base, model_name=model_name)
-        elif client_name in ["openai", "gemini"]:
+        elif client_name in OPENAI_COMPATIBLE_CLIENTS:
             api_key = os.environ.get(client_name.upper() + "_API_KEY", "")
             self.client = create_openai_client(
                 api_base=api_base, api_key=api_key, model_name=model_name)
@@ -825,7 +827,7 @@ class OneViewAgent:
         if client_name == "vllm":
             self.client = create_vllm_client(
                 api_base=api_base, model_name=model_name)
-        elif client_name in ["openai", "gemini"]:
+        elif client_name in OPENAI_COMPATIBLE_CLIENTS:
             api_key = os.environ.get(client_name.upper() + "_API_KEY", "")
             self.client = create_openai_client(
                 api_base=api_base, api_key=api_key, model_name=model_name)
@@ -1020,7 +1022,7 @@ class NoViewAgent:
         if client_name == "vllm":
             self.client = create_vllm_client(
                 api_base=api_base, model_name=model_name)
-        elif client_name in ["openai", "gemini"]:
+        elif client_name in OPENAI_COMPATIBLE_CLIENTS:
             api_key = os.environ.get(client_name.upper() + "_API_KEY", "")
             self.client = create_openai_client(
                 api_base=api_base, api_key=api_key, model_name=model_name)
